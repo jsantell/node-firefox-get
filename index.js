@@ -29,7 +29,6 @@ module.exports = function (version, options, callback) {
   if (version !== 'aurora' && version !== 'nightly')
     url += os + '/' + language + '/';
 
-  console.log(callback);
   if (callback)
     deferred.promise.then(callback.bind(null, null), callback.bind(null));
 

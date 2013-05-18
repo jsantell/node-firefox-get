@@ -2,12 +2,41 @@ var request = require('request');
 var when = require('when');
 var URL = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/';
 
-var fluxVersions = {
+var channels = {
   'release': 'releases/latest/',
   'beta': 'releases/latest-beta/',
   'aurora': 'nightly/latest-mozilla-aurora/',
   'nightly': 'nightly/latest-trunk/'
 };
+
+var osData = {
+  'linux-x86_64': { ext: '.tar.bz2', prefix: 'firefox-' },
+  'linux-i686':   { ext: '.tar.bz2', prefix: 'firefox-' },
+  'mac':          { ext: '.dmg',     prefix: 'Firefox ' },
+  'win32':        { ext: '.exe',     prefix: 'Firefox Setup ' },
+  'win64-x86_64': { ext: '.installer.exe', prefix: 'firefox-' }
+};
+
+function createRegex (version, os, language) {
+  var regex = '';
+  if (version === 'aurora' || version === 'nightly') {
+    // In aurora/nightly channels, all files use the same prefix
+    regex += 'firefox-[0-9]*\\.[^\\.]*\\.';
+    regex += language + '\\.' + os;
+    // Windows builds in aurora/nightly channels all have .installer.exe
+    regex += escapeExt(os === 'win32' ?
+      osData['win64-x86_64'].ext :
+      osData[os].ext);
+  } else {
+    regex += osData[os].prefix + '[0-9]+(\\.[0-9a-zA-Z]+)*';
+    regex += escapeExt(osData[os].ext);
+  }
+  return new RegExp(regex);
+}
+
+function escapeExt (ext) {
+  return (ext || '').replace(/\./g, '\\\.');
+}
 
 module.exports = function (version, options, callback) {
   callback = callback ? callback : typeof options === 'function' ? options : null;
@@ -17,12 +46,10 @@ module.exports = function (version, options, callback) {
   var os = options.os || 'linux-x86_64';
   var language = options.language || 'en-US';
   var url = URL;
-  var regex = version === 'aurora' || version === 'nightly' ?
-    new RegExp('firefox-[0-9]*\\.[^\\.]*\\.' + language + '\\.' + os + '\\.tar\\.bz2') :
-    /firefox-[0-9]+(\.[0-9a-zA-Z]+)*\.tar\.bz2/;
+  var regex = createRegex(version, os, language);
 
-  if (fluxVersions[version])
-    url += fluxVersions[version];
+  if (channels[version])
+    url += channels[version];
   else
     url += 'releases/' + version + '/';
 

@@ -1,7 +1,7 @@
 {
   "name" : "firefox-get",
   "description" : "grab firefox package URLs",
-  "version" : "0.0.2",
+  "version" : "0.0.3",
   "main" : "index.js",
   "dependencies" : {
     "request": "latest",
@@ -22,7 +22,8 @@
     "firefox",
     "url",
     "linux",
-    "builds"
+    "builds",
+    "mozilla"
   ],
   "author" : {
     "name" : "Jordan Santell",

@@ -1,6 +1,8 @@
 firefox-get
 =====
-Grab specific firefox package URLs
+[![Build Status](https://travis-ci.org/jsantell/node-firefox-get.png?branch=master)](https://travis-ci.org/jsantell/node-firefox-get)
+
+Grabs Firefox package URLs
 
 ## Installation
 
@@ -19,9 +21,9 @@ There are some OS/version/language combinations that don't exist. Be sure to che
 * `os`: Operating system. Available are the following:
   * `'linux-x86_64'` (default);
   * `'linux-i686'`
-  * '`'mac'`'
-  * '`'win32'`
-  * '`'win64-x86_64'` (Only works with aurora/nightly channels)
+  * `'mac'`
+  * `'win32'`
+  * `'win64-x86_64'` (Only works with aurora/nightly channels)
 * `language`: Any of the supported language codes. [Here's a list of languages](http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/). `'en-US'` is default.
 
 ## Examples

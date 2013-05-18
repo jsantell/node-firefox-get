@@ -1,9 +1,13 @@
 firefox-get
 =====
-Grab specific firefox packages
+Grab specific firefox package URLs
 
 * Only supports linux at the moment
 * Needs more tests
+
+## Installation
+
+`npm install firefox-get`
 
 ## Method
 
@@ -43,3 +47,11 @@ get('18.0b2', function (err, url) {
   // URL returned
 });
 ```
+
+## Development
+
+Run tests with `npm test`
+
+## License
+
+MIT License

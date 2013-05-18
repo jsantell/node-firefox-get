@@ -13,7 +13,7 @@ Grab specific firefox package URLs
 
 ### get(version, [options], [callback])
 
-`version` can be a number (`20`) or a string (`18.0b2`), or a channel version such as `release`, `beta`, `aurora` and `nightly`. Returns a promise, or can pass in a callback, which has an `err` and `value` argument signature.
+`version` can be a number (`20`) or a string (`'18.0b2'`), or a channel version such as `'release'`, `'beta'`, `'aurora'` and `'nightly'`. Returns a promise, or can pass in a callback, which has an `err` and `value` argument signature.
 
 #### options
 
@@ -30,7 +30,7 @@ get('16.0.2').then(function (url) {
 });
 
 get('nightly').then(function (url) {
-  console.log(url); // http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk-firefox-24.0a.en-US.linux-x86_64.tar.bz2
+  console.log(url); // http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/firefox-24.0a1.en-US.linux-x86_64.tar.bz2
 })
 
 // Using options

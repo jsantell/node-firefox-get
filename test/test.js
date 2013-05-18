@@ -4,7 +4,7 @@ var expect = chai.expect;
 var assert = chai.assert;
 var prefix = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/';
 
-describe('getURL', function () {
+describe('get URL', function () {
   var versions = {};
   it('Takes os options', function (done) {
     get('3.6', { os: 'linux-i686' }).then(function (url) {
@@ -73,23 +73,35 @@ describe('getURL', function () {
       done();
     });
   });
+  it('rejects when invalid version', function (done) {
+    get('abc', function () {}, function (reason) {
+      expect(reason).to.be.ok;
+      done();
+    });
+  });
+  it('rejects when invalid combination', function (done) {
+    // 3.6 does not have 64 bit build
+    get('3.6', function () {}, function (reason) {
+      expect(reason).to.be.ok;
+      done();
+    });
+  });
 });
 
 describe('callbacks', function () {
-  it('passes url into callback if specified', function (err, url) {
-    get('release', function (err, url) {
-      var v = url.match(/firefox-(.*).tar.bz2/)[1];
+  it('passes url into callback if specified', function (done) {
+    get('16.0.2', function (err, url) {
       expect(url).to.be.equal(
-        prefix + 'releases/latest/linux-x86_64/en-US/firefox-'+v+'.tar.bz2'
+        prefix + 'releases/16.0.2/linux-x86_64/en-US/firefox-16.0.2.tar.bz2'
       );
       expect(err).to.not.be.ok;
       done();
     });
   });
-  it('passes error into callback if specified and failed', function (err, url) {
+  it('passes error into callback if specified and failed', function (done) {
     get('2xk40', function (err, url) {
       expect(url).to.be.not.ok;
-      expect(err).to.be.a(Error);
+      expect(err).to.be.ok;
       done();
     });
   });

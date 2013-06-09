@@ -1,7 +1,7 @@
 {
   "name" : "firefox-get",
   "description" : "grab firefox package URLs",
-  "version" : "0.0.3",
+  "version" : "0.0.4",
   "main" : "index.js",
   "dependencies" : {
     "request": "latest",
@@ -23,6 +23,8 @@
     "url",
     "linux",
     "builds",
+    "b2g",
+    "firefox os",
     "mozilla"
   ],
   "author" : {

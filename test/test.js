@@ -5,7 +5,7 @@ var expect = chai.expect;
 var assert = chai.assert;
 var prefix = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/';
 
-describe('versions', function () {
+describe('firefox versions', function () {
   var versions = {};
   it('Handles older versions (3.6)', function (done) {
     get('3.6', { os: 'linux-i686' }).then(function (url) {
@@ -85,6 +85,26 @@ describe('versions', function () {
     get('3.6', function () {}, function (reason) {
       expect(reason).to.be.ok;
       done();
+    });
+  });
+});
+
+describe('b2g versions', function() {
+  var get = require('../index').b2g;
+
+  ['linux-x86_64', 'linux-i686', 'mac64', 'win32'].forEach(function (os) {
+    it('should work for OS: ' + os, function (done) {
+      when.all([
+        get('release', { os: os }),
+        get('nightly', { os: os })
+      ]).then(function (urls) {
+        urls.forEach(function (url) {
+          // verify we actually got something close to right
+          expect(url).to.include(os);
+          expect(url).to.be.ok;
+        });
+        done();
+      });
     });
   });
 });

@@ -14,6 +14,8 @@ Grabs Firefox package URLs
 
 `version` can be a number (`20`) or a string (`'18.0b2'`), or a channel version such as `'release'`, `'beta'`, `'aurora'` and `'nightly'`. Returns a promise, or can pass in a callback, which has an `err` and `value` argument signature.
 
+The module exports two methods: `b2g` and `firefox` with the same function signature, one for the Firefox browser, and the other for Firefox OS.
+
 There are some OS/version/language combinations that don't exist. Be sure to check the [Firefox FTP](http://ftp.mozilla.org/pub/mozilla.org/firefox/) to see if it exists when debugging any issues.
 
 #### options
@@ -30,6 +32,7 @@ There are some OS/version/language combinations that don't exist. Be sure to che
 
 ```javascript
 var get = require('firefox-get');
+var b2gGet = get.b2g;
 
 get('16.0.2').then(function (url) {
   console.log(url); // http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/16.0.2/linux-x86_64/en-US/firefox-16.0.2.tar.bz2
@@ -37,7 +40,12 @@ get('16.0.2').then(function (url) {
 
 get('nightly').then(function (url) {
   console.log(url); // http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/firefox-24.0a1.en-US.linux-x86_64.tar.bz2
-})
+});
+
+// Get b2g package
+b2gGet('release').then(function (url) {
+  // URL returned
+});
 
 // Using options
 get('release', { os: 'linux-i686', language: 'es-ES' }).then(function (url) {

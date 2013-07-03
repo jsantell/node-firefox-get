@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+var get = require('../');
+var args = require('optimist')
+  .default('v', 'nightly')
+  .default('o', 'linux-x86_64')
+  .default('l', 'en-US')
+  .argv;
+
+var version = args.version || args.v;
+var os = args.os || args.o;
+var lang = args.language || args.l;
+var b2g = args.b2g || args.b;
+var getURL = b2g ? get.b2g : get;
+
+getURL(version, { os: os, language: lang }).then(function (url) {
+  process.stdout.write(url);
+}, function (reason) {
+  process.stderr.write(reason);
+  process.exit(1);
+});

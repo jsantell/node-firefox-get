@@ -28,6 +28,24 @@ There are some OS/version/language combinations that don't exist. Be sure to che
   * `'win64-x86_64'` (Only works with aurora/nightly channels)
 * `language`: Any of the supported language codes. [Here's a list of languages](http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/). `'en-US'` is default.
 
+## CLI
+
+Also provided is a CLI tool -- same options (os, language, version) as above. Pushes URL to stdout.
+
+```
+# Specify version
+$ firefox-get -v nightly
+$ firefox-get --version 24
+
+# Language and OS
+$ firefox-get -v nightly -l en-US -o linux-x86_64
+$ firefox-get --version nightly --language en-US --os linux-x86_64
+
+# Also a B2G flag for the B2G URL instead of Firefox's
+$ firefox-get -b -v aurora
+$ firefox-get --b2g -v aurora
+```
+
 ## Examples
 
 ```javascript

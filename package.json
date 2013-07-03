@@ -1,7 +1,7 @@
 {
   "name" : "firefox-get",
   "description" : "grab firefox package URLs",
-  "version" : "0.0.5",
+  "version" : "0.0.6",
   "main" : "index.js",
   "dependencies" : {
     "request": "2.21.0",
@@ -36,5 +36,5 @@
     "url" : "http://github.com/jsantell"
   },
   "license" : "MIT",
-  "engines" : ["node >= 0.6.12"]
+  "engines" : ["node >= 0.8"]
 }

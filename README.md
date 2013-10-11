@@ -1,8 +1,13 @@
-firefox-get
-=====
+# Deprecated
+
+This module has been deprecated by [mozilla-get-url](https://github.com/mozilla-b2g/mozilla-get-url).
+
+# firefox-get
+
 [![Build Status](https://travis-ci.org/jsantell/node-firefox-get.png?branch=master)](https://travis-ci.org/jsantell/node-firefox-get)
 
 Grabs Firefox package URLs
+
 
 ## Installation
 
